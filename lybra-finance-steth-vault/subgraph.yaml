@@ -1,0 +1,48 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: mappins
+    network: mainnet
+    source:
+      address: "0xa980d4c0C2E48d305b582AA439a3575e3de06f0E"
+      abi: mappins
+      startBlock: 17990141
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Burn
+        - DepositAsset
+        - DepositEther
+        - FeeDistribution
+        - LSDValueCaptured
+        - LiquidationRecord
+        - Mint
+        - RigidRedemption
+        - WithdrawAsset
+      abis:
+        - name: mappins
+          file: ./abis/mappins.json
+      eventHandlers:
+        - event: Burn(indexed address,indexed address,uint256,uint256)
+          handler: handleBurn
+        - event: DepositAsset(indexed address,address,uint256,uint256)
+          handler: handleDepositAsset
+        - event: DepositEther(indexed address,address,uint256,uint256,uint256)
+          handler: handleDepositEther
+        - event: FeeDistribution(indexed address,uint256,uint256)
+          handler: handleFeeDistribution
+        - event: LSDValueCaptured(uint256,uint256,uint256,uint256)
+          handler: handleLSDValueCaptured
+        - event: LiquidationRecord(indexed address,indexed address,indexed address,uint256,uint256,uint256,bool,uint256)
+          handler: handleLiquidationRecord
+        - event: Mint(indexed address,indexed address,uint256,uint256)
+          handler: handleMint
+        - event: RigidRedemption(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleRigidRedemption
+        - event: WithdrawAsset(indexed address,address,indexed address,uint256,uint256)
+          handler: handleWithdrawAsset
+      file: ./src/mappins.ts
