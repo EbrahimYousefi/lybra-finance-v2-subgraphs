@@ -7,8 +7,6 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { Burn } from "../generated/schema"
-import { Burn as BurnEvent } from "../generated/mappins/mappins"
 import { handleBurn } from "../src/mappins"
 import { createBurnEvent } from "./mappins-utils"
 
