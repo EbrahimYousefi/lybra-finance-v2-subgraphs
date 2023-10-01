@@ -1,0 +1,81 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x97de57eC338AB5d51557DA3434828C5DbFaDA371"
+      abi: Contract
+      startBlock: 17115039
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - BorrowApyChanged
+        - Burn
+        - DepositEther
+        - ESLBRMinterChanged
+        - FeeDistribution
+        - GovernanceAuthorityTransfer
+        - KeeperRateChanged
+        - LSDistribution
+        - LiquidationRecord
+        - Mint
+        - RedemptionFeeChanged
+        - RedemptionProvider
+        - RigidRedemption
+        - SafeCollateralRateChanged
+        - ServiceFeePoolChanged
+        - SharesBurnt
+        - Transfer
+        - TransferShares
+        - WithdrawEther
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: BorrowApyChanged(uint256)
+          handler: handleBorrowApyChanged
+        - event: Burn(address,indexed address,uint256,uint256)
+          handler: handleBurn
+        - event: DepositEther(address,indexed address,uint256,uint256)
+          handler: handleDepositEther
+        - event: ESLBRMinterChanged(address,uint256)
+          handler: handleESLBRMinterChanged
+        - event: FeeDistribution(indexed address,uint256,uint256)
+          handler: handleFeeDistribution
+        - event: GovernanceAuthorityTransfer(address)
+          handler: handleGovernanceAuthorityTransfer
+        - event: KeeperRateChanged(uint256)
+          handler: handleKeeperRateChanged
+        - event: LSDistribution(uint256,uint256,uint256)
+          handler: handleLSDistribution
+        - event: LiquidationRecord(address,address,indexed address,uint256,uint256,uint256,bool,uint256)
+          handler: handleLiquidationRecord
+        - event: Mint(address,indexed address,uint256,uint256)
+          handler: handleMint
+        - event: RedemptionFeeChanged(uint256)
+          handler: handleRedemptionFeeChanged
+        - event: RedemptionProvider(address,bool)
+          handler: handleRedemptionProvider
+        - event: RigidRedemption(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleRigidRedemption
+        - event: SafeCollateralRateChanged(uint256)
+          handler: handleSafeCollateralRateChanged
+        - event: ServiceFeePoolChanged(address,uint256)
+          handler: handleServiceFeePoolChanged
+        - event: SharesBurnt(indexed address,uint256,uint256,uint256)
+          handler: handleSharesBurnt
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransferShares(indexed address,indexed address,uint256)
+          handler: handleTransferShares
+        - event: WithdrawEther(address,indexed address,uint256,uint256)
+          handler: handleWithdrawEther
+      file: ./src/contract.ts
